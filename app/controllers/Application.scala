@@ -12,19 +12,13 @@ import scala.util.{Failure, Success}
 
 object Application extends Controller {
 
-  def requireJsConfig = Cached("require_js_config") {
-    Action {
-      Ok(views.html.requireJsConfig()).as("application/javascript")
-    }
-  }
-
   def index(uri: String) = Action { request =>
-     Ok(views.html.main(Html("Loading...")))
+     Ok(views.html.index(Html("Loading...")))
   }
 
   def api(action: String, id: Option[Int]) = Action { request =>
 
     val r = request.queryString
-    Ok(views.html.main(Html(r.toString()+id.toString)))
+    Ok(views.html.index(Html(r.toString()+id.toString)))
   }
 }

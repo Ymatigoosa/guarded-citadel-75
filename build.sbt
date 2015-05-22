@@ -1,4 +1,4 @@
-name := "scissis-prototype1"
+name := "y-imageboard"
 
 version := "2.3.8"
 
@@ -28,3 +28,5 @@ CoffeeScriptKeys.sourceMap := true
 pipelineStages := Seq(digest, gzip)
 
 PublicOnFileSystem.settings
+
+unmanagedResourceDirectories in Assets += baseDirectory.value / "frontend" / "dist"

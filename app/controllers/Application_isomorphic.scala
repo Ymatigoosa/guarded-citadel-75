@@ -25,19 +25,13 @@ object Application_isomorphic extends Controller {
   engine.eval(nashornpolyfilljs)
   engine.eval(serversidejs)
 
-  def requireJsConfig = Cached("require_js_config") {
-    Action {
-      Ok(views.html.requireJsConfig()).as("application/javascript")
-    }
-  }
-
   def serverSideWithJsEngine(uri: String) = Action.async { request =>
 
     val markupPromise = Promise[String]()
     invocable.invokeFunction("prerender", request.uri, markupPromise)
 
     markupPromise.future.map{
-      case markup => Ok(views.html.main(Html(markup)))
+      case markup => Ok(views.html.index(Html(markup)))
     }.recover{
       case e => BadRequest(e.getMessage)
     }
@@ -46,6 +40,6 @@ object Application_isomorphic extends Controller {
   def api(action: String, id: Option[Int]) = Action { request =>
 
     val r = request.queryString
-    Ok(views.html.main(Html(r.toString()+id.toString)))
+    Ok(views.html.index(Html(r.toString()+id.toString)))
   }
 }

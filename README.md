@@ -1,4 +1,4 @@
-# About
+npm run # About
 
 FOR THE GLORY OF SCALA HUEHUEHUE
 
@@ -6,7 +6,7 @@ FOR THE GLORY OF SCALA HUEHUEHUE
 
 ## Idea 14
 
-1. install scala plugin & some js plugins for syntax highlighting (dont remember which.....)
+1. install scala plugin
 2. press import project and choose sbt project
 3. wait until magic is done
 4. add startup config like this
@@ -32,7 +32,7 @@ FOR THE GLORY OF SCALA HUEHUEHUE
 
 * `app` - Play application folder
     * `actors` - actors package
-    * `assets` - this folder can contain js/coffee/less files that uses play-framework js build system.***так как я использую внешнюю систему билдинга эта папка бесполезна, хотя в будущем омжно всё свести в систиму билдинга скалы, тк плагин для es6 вроде есть...***
+    * `assets` - this folder can contain js/coffee/less files that uses play-framework js build system.
     * `controllers`
         * `Application.scala` - main controller
         * `Application_isomorphic.scala` - UNUSED. isomorphic rendering controller
