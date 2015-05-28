@@ -1,32 +1,24 @@
-name := "y-imageboard"
+name := """y-imageboard"""
 
-version := "2.3.8"
+version := "0.1-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
+  jdbc,
   cache,
   ws,
-  "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "org.webjars" % "bootstrap" % "3.3.2",
-  "org.webjars" % "jquery" % "1.11.1",
-  "org.webjars" % "requirejs" % "2.1.16",
-  // Test dependencies
-  "org.webjars" % "rjs" % "2.1.15" % "test",
-  "org.webjars" % "squirejs" % "0.1.0" % "test"
+  specs2 % Test
 )
 
-// JsEngineKeys.engineType := JsEngineKeys.EngineType.Node
+resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-MochaKeys.requires += "./Setup"
+// Play provides two styles of routers, one expects its actions to be injected, the
+// other, legacy style, accesses its actions statically.
+routesGenerator := InjectedRoutesGenerator
 
-CoffeeScriptKeys.sourceMap := true
-
-// Apply RequireJS optimization, digest calculation and gzip compression to assets
 pipelineStages := Seq(digest, gzip)
-
-PublicOnFileSystem.settings
 
 unmanagedResourceDirectories in Assets += baseDirectory.value / "frontend" / "dist"

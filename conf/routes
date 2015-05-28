@@ -1,11 +1,10 @@
-# Versioned Assets
-GET        /versioned-assets/*file            controllers.Assets.versioned(path="/public", file: Asset)
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
 
-# Unversioned Assets
-GET        /assets/*file                      controllers.Assets.at(path="/public", file)
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
 
-GET        /api/:action                       controllers.Application.api(action, id: Option[Int])
-
-GET        /                                  controllers.Application.index(uri = "")
-
-GET        /*uri                              controllers.Application.index(uri)
+# Home page
+GET     /                       controllers.Application.index(uri="")
+GET     /*uri                   controllers.Application.index(uri)
