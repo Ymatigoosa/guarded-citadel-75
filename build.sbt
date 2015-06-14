@@ -20,5 +20,3 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 routesGenerator := InjectedRoutesGenerator
 
 pipelineStages := Seq(digest, gzip)
-
-unmanagedResourceDirectories in Assets += baseDirectory.value / "frontend" / "dist"
